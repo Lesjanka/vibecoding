@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <header></header>
+    <main></main>
+    <footer></footer>
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lookmaksing: Курс Python</title>
+    <style>
+        :root {
+            --bg: #1e1e1e;
+            --card: #252526;
+            --text: #d4d4d4;
+            --accent: #61dafb;
+            --success: #4caf50;
+            --error: #f44336;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            height: 100vh;
+        }
+        #sidebar {
+            background-color: #2d2d30;
+            border-right: 1px solid #333;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        #sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        .module-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 8px;
+            background: var(--card);
+            border: 1px solid #333;
+            color: var(--text);
+            text-align: left;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        .module-btn:hover, .module-btn.active {
+            background-color: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+        }
+        #main-content {
+            padding: 20px;
+            overflow-y: auto;
+            display: none;
+        }
+        #main-content.active { display: block; }
+        .lesson-card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        textarea, pre {
+            width: 100%;
+            background: #111;
+            color: #0f0;
+            border: 1px solid #444;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        textarea {
+            height: 200px;
+            padding: 10px;
+            resize: vertical;
+        }
+        pre {
+            height: 100px;
+            padding: 10px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        button {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover { opacity: 0.9; }
+        .test-result {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .test-result.pass { background-color: #2d3a2d; color: var(--success); }
+        .test-result.fail { background-color: #3a2d2d; color: var(--error); }
+        .nav-controls {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>Lookmaksing: Python</h2>
+    <button class="module-btn" data-module="1">Модуль 1: Введение</button>
+    <button class="module-btn" data-module="2">Модуль 2: Переменные и типы</button>
+    <button class="module-btn" data-module="3">Модуль 3: Условия и циклы</button>
+    <button class="module-btn" data-module="4">Модуль 4: Функции</button>
+</div>
+
+<div id="main-content">
+    <!-- Модуль 1 -->
+    <div id="module-1" class="lesson-card">
+        <h1>Модуль 1: Введение</h1>
+        <p>Python — это язык программирования. Ваша первая задача — вывести текст на экран.</p>
+        <p><strong>Задание:</strong> Напишите код, который выводит фразу <code>Hello, Lookmaksing!</code></p>
+        
+        <textarea id="editor1">print("Hello, Lookmaksing!")</textarea>
+        <button onclick="runCode(1)">▶ Выполнить код</button>
+        <button onclick="checkLesson(1)">Проверить решение</button>
+        <pre id="console1"></pre>
+        <div id="result1" class="test-result"></div>
+    </div>
+
+    <!-- Модуль 2 -->
+    <div id="module-2" class="lesson-card" style="display:none;">
+        <h1>Модуль 2: Переменные и типы</h1>
+        <p>Переменные хранят данные. Числа можно складывать, строки — объединять.</p>
+        <p><strong>Задание:</strong> Создайте переменную <code>name</code> со своим именем и переменную <code>age</code> со своим возрастом. Выведите в консоль строку: <code>Меня зовут [имя], мне [возраст] лет.</code></p>
+        
+        <textarea id="editor2">name = "Alex"
+age = 25
+print("Меня зовут", name + ",", "мне", str(age), "лет.")</textarea>
+        <button onclick="runCode(2)">▶ Выполнить код</button>
+        <button onclick="checkLesson(2)">Проверить решение</button>
+        <pre id="console2"></pre>
+        <div id="result2" class="test-result"></div>
+    </div>
+
+    <!-- Модуль 3 -->
+    <div id="module-3" class="lesson-card" style="display:none;">
+        <h1>Модуль 3: Условия и циклы</h1>
+        <p>Циклы позволяют повторять действия. Напишем программу, которая находит сумму всех четных чисел от 1 до 10.</p>
+        <p><strong>Задание:</strong> Используя цикл <code>for</code> и условие <code>if</code>, вычислите сумму четных чисел в диапазоне от 1 до 10 включительно и выведите результат.</p>
+        
+        <textarea id="editor3">total = 0
+for i in range(1, 11):
+    if i % 2 == 0:
+        total += i
+print(total)</textarea>
+        <button onclick="runCode(3)">▶ Выполнить код</button>
+        <button onclick="checkLesson(3)">Проверить решение</button>
+        <pre id="console3"></pre>
+        <div id="result3" class="test-result"></div>
+    </div>
+
+    <!-- Модуль 4 -->
+    <div id="module-4" class="lesson-card" style="display:none;">
+        <h1>Модуль 4: Функции</h1>
+        <p>Функции помогают переиспользовать код. Напишем функцию, которая считает факториал числа.</p>
+        <p><strong>Задание:</strong> Создайте функцию <code>factorial(n)</code>, которая возвращает факториал числа. Вызовите её для числа 5 и выведите результат (должно получиться 120).</p>
+        
+        <textarea id="editor4">def factorial(n):
+    if n == 0:
+        return 1
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+print(factorial(5))</textarea>
+        <button onclick="runCode(4)">▶ Выполнить код</button>
+        <button onclick="checkLesson(4)">Проверить решение</button>
+        <pre id="console4"></pre>
+        <div id="result4" class="test-result"></div>
+    </div>
+
+    <div class="nav-controls">
+        <button id="prevBtn" onclick="prevLesson()" style="display:none;">◀ Назад</button>
+        <button id="nextBtn" onclick="nextLesson()">Далее ▶</button>
+    </div>
+</div>
+
+<script>
+    let currentLesson = 1;
+    const lessons = document.querySelectorAll('.lesson-card');
+    const sidebarBtns = document.querySelectorAll('.module-btn');
+    const totalLessons = lessons.length;
+
+    function showLesson(n) {
+        lessons.forEach(lesson => lesson.style.display = 'none');
+        sidebarBtns.forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById('module-' + n).style.display = 'block';
+        document.querySelector(`.module-btn[data-module="${n}"]`).classList.add('active');
+        currentLesson = n;
+
+        document.getElementById('prevBtn').style.display = (n === 1) ? 'none' : 'inline-block';
+        document.getElementById('nextBtn').textContent = (n === totalLessons) ? 'Готово' : 'Далее ▶';
+        
+        // Очищаем консоль и результаты при переключении
+        document.getElementById('console' + n).textContent = '';
+        document.getElementById('result' + n).style.display = 'none';
+    }
+
+    function runCode(lessonNum) {
+        const code = document.getElementById('editor' + lessonNum).value;
+        const consoleEl = document.getElementById('console' + lessonNum);
+        consoleEl.textContent = '';
+        
+        try {
+            // Создаем изолированный контекст для выполнения
+            const sandbox = {
+                print: function(...args) {
+                    consoleEl.textContent += args.join(' ') + '\n';
+                }
+            };
+            // Используем Function для выполнения кода в контексте песочницы
+            new Function('sandbox', 'with(sandbox) {' + code + '}')(sandbox);
+        } catch (e) {
+            consoleEl.textContent = 'Ошибка выполнения: ' + e.message;
+        }
+    }
+
+    function checkLesson(lessonNum) {
+        const code = document.getElementById('editor' + lessonNum).value;
+        const resultEl = document.getElementById('result' + lessonNum);
+        const consoleEl = document.getElementById('console' + lessonNum);
+        consoleEl.textContent = '';
+        resultEl.style.display = 'none';
+
+        try {
+            const output = [];
+            const sandbox = {
+                print: function(...args) {
+                    output.push(args.join(' '));
+                }
+            };
+            new Function('sandbox', 'with(sandbox) {' + code + '}')(sandbox);
+            const outputStr = output.join('\n');
+
+            let success = false;
+            if (lessonNum === 1 && outputStr.includes('Hello, Lookmaksing!')) success = true;
+            if (lessonNum === 2 && outputStr.includes('Меня зовут') && outputStr.includes('лет')) success = true;
+            if (lessonNum === 3 && outputStr.trim() === '30') success = true;
+            if (lessonNum === 4 && outputStr.trim() === '120') success = true;
+
+            if (success) {
+                resultEl.className = 'test-result pass';
+                resultEl.textContent = '✅ Тест пройден!';
+            } else {
+                resultEl.className = 'test-result fail';
+                resultEl.textContent = '❌ Тест не пройден. Проверьте вывод в консоли.';
+            }
+            resultEl.style.display = 'block';
+
+        } catch (e) {
+            resultEl.className = 'test-result fail';
+            resultEl.textContent = 'Ошибка в коде: ' + e.message;
+            resultEl.style.display = 'block';
+        }
+    }
+
+    function nextLesson() {
+        if (currentLesson < totalLessons) {
+            showLesson(currentLesson + 1);
+        }
+    }
+
+    function prevLesson() {
+        if (currentLesson > 1) {
+            showLesson(currentLesson - 1);
+        }
+    }
+
+    sidebarBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const moduleNum = parseInt(btn.getAttribute('data-module'));
+            showLesson(moduleNum);
+        });
+    });
+
+    // Показываем первый урок при загрузке
+    showLesson(1);
+</script>
+
+</body>
+</html>
